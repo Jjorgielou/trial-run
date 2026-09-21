@@ -1,0 +1,14 @@
+const express = require('express')
+
+const app = express()
+
+app.use(express.json())
+
+app.use('/api/users', require('./routes/users.routes'))
+app.use('/api/products', require('./routes/products.routes'))
+app.use('/api/orders', require('./routes/orders.routes'))
+app.use('/api/categories', require('./routes/categories.routes'))
+
+app.listen(1234, () => {
+    console.log('Server is running on http://localhost:1234')
+})
