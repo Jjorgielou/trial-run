@@ -1,14 +1,13 @@
 const express = require('express')
+const server = express()
+const port = 1234
+const hostname = '0.0.0.0'
 
-const app = express()
+server.use(express.json())
 
-app.use(express.json())
+const usersRoutes = require('./routes/users.routes')
+server.use('/users', usersRoutes)
 
-app.use('/api/users', require('./routes/users.routes'))
-app.use('/api/products', require('./routes/products.routes'))
-app.use('/api/orders', require('./routes/orders.routes'))
-app.use('/api/categories', require('./routes/categories.routes'))
-
-app.listen(1234, () => {
-    console.log('Server is running on http://localhost:1234')
+server.listen(port, hostname, () => {
+    console.log(`Server is running:${hostname}:${port}`)
 })
